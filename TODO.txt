@@ -1,11 +1,14 @@
 TODO
 
+-Budget total on resource report
+-Task total on resource report
+-Make it easier to print the resource report. Right now you can only get into project settings in edit mode, which makes the print button not visible.
 -Setup ACLs for Resource view on projects.
 -Setup ACLs for capabilities
--Report project budget based on resource estimates
 -Report on actual consumption of resources
--Rollup resource costs
 -Create the differentiation between bound resources and unbound.
 -Change name of Working Time to Resource Calendars everywhere (Use translation?)
 -Change name of Resource Leaves to Calendar Exceptions everywhere (Use translation?)
 -Filter resources by project
+-Spin capabilities off into a module
+

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="report_project_resources">
+        <t>
+            <t t-foreach="docs" t-as="e">
+                <t t-call="web.basic_layout">
+                    <div class="page">
+                        <form>
+                            <br/>
+                            <div class="container">
+                                <tr>
+                                    <th>
+                                        <t t-if="e.name">
+                                            <h2>
+                                                <b>
+                                                    <span t-field="e.name"/>
+                                                </b>
+                                            </h2>
+                                        </t>
+                                    </th>
+                                </tr>
+                                <table class="table table-condensed">
+                                    <thead>
+                                        <tr style="border-bottom:1px black;border-style: solid;">
+                                            <th>Customer</th>
+                                            <th>Project Manager</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <t t-if='e.partner_id'>
+                                                    <span t-field="e.partner_id"/>
+                                                </t>
+                                                <t t-if="not e.partner_id">-
+                                                </t>
+                                            </td>
+                                            <td>
+                                                <t t-if='e.user_id'>
+                                                    <span t-field="e.user_id"/>
+                                                </t>
+                                                <t t-if="not e.user_id">-</t>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <t t-if="e.tasks">
+                                    <div>
+                                        <tr>
+                                            <th>
+                                                <h2>
+                                                    <b>Project Resources:</b>
+                                                </h2>
+                                            </th>
+                                        </tr>
+                                    </div>
+                                    <t t-foreach="e.tasks" t-as="t">
+                                        <t t-if='t.name'>
+                                            <span t-field="t.name"/>
+                                        </t>
+                                        <t t-if="not t.name">
+                                            -
+                                        </t>
+                                        <t t-if="t.resource_line_ids">
+                                            <table class="table table-condensed">
+                                                <thead>
+                                                    <tr style="border-bottom:1px black;border-style: solid;">
+                                                        <th>Resource Name</th>
+                                                        <th>Resource Type</th>
+                                                        <th>Quantity/Hours</th>
+                                                        <th>Cost</th>
+                                                        <th>Subtotal</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <t t-foreach="t.resource_line_ids" t-as="r">
+                                                        <tr>
+                                                            <td>
+                                                                <t t-if='r.resource_id'>
+                                                                    <span t-field="r.resource_id"/>
+                                                                </t>
+                                                                <t t-if="not r.resource_id">
+                                                                    -
+                                                                </t>
+                                                            </td>
+                                                            <td>
+                                                                <t t-if='r.resource_type'>
+                                                                    <span t-field="r.resource_type"/>
+                                                                </t>
+                                                                <t t-if="not r.resource_type">
+                                                                    -
+                                                                </t>
+                                                            </td>
+                                                            <td>
+                                                                <t t-if='r.quantity'>
+                                                                    <span t-field="r.quantity"/>
+                                                                </t>
+                                                                <t t-if="not r.quantity">
+                                                                    -
+                                                                </t>
+                                                            </td>
+                                                            <td>
+                                                                <t t-if='r.cost'>
+                                                                    <span t-field="r.cost"/>
+                                                                </t>
+                                                                <t t-if="not r.cost">
+                                                                    -
+                                                                </t>
+                                                            </td>
+                                                            <td>
+                                                                <t t-if='r.subtotal'>
+                                                                    <span t-field="r.subtotal"/>
+                                                                </t>
+                                                                <t t-if="not r.subtotal">
+                                                                    -
+                                                                </t>
+                                                            </td>
+                                                        </tr>
+                                                    </t>
+                                                </tbody>
+                                            </table>
+                                        </t>
+                                    </t>
+                                </t>
+                            </div>
+                        </form>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

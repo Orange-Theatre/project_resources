@@ -9,6 +9,9 @@
 	'depends' : [ 'project', 'resource' ],
 	'data' : [
 		'views/view_project_resources.xml',
+
+		'report/project_resources_report.xml',
+		'report/report_project_resources.xml',
 	],
 	'auto_install' : False,
 	'application': False,

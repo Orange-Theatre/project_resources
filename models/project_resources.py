@@ -44,7 +44,9 @@ class Resource(models.Model):
 	capability_ids = fields.Many2many('project_resources.capability', string='Capabilities') # This may need more info to work.
 	resource_type = fields.Selection(selection_add=[('equipment', 'Equipment')])
 	resource_line_ids = fields.One2many('project_resources.resource_line', 'resource_id')
-	cost = fields.Float(string='Cost Per Unit/Hour')
+	cost = fields.Monetary(string='Cost Per Unit/Hour')
+	currency_id = fields.Many2one('res.currency', 'Currency', required=True,\
+		default=lambda self: self.env.user.company_id.currency_id.id)
 	# project_ids = fields.One2many()
 
 class ResourceLine(models.Model):
