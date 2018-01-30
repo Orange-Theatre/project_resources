@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="report_project_resources_summary">
+        <t>
+            <t t-foreach="docs" t-as="e">
+                <t t-call="web.basic_layout">
+                    <div class="page">
+                        <form>
+                            <br/>
+                            <div class="container">
+                                <tr>
+                                    <th>
+                                        <t t-if="e.name">
+                                            <h2>
+                                                <b>
+                                                    <span t-field="e.name"/>
+                                                </b>
+                                            </h2>
+                                        </t>
+                                    </th>
+                                </tr>
+                                <table class="table table-condensed">
+                                    <thead>
+                                        <tr style="border-bottom:1px black;border-style: solid;">
+                                            <th>Customer</th>
+                                            <th>Project Manager</th>
+                                            <th>Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <t t-if='e.partner_id'>
+                                                    <span t-field="e.partner_id"/>
+                                                </t>
+                                                <t t-if="not e.partner_id">-
+                                                </t>
+                                            </td>
+                                            <td>
+                                                <t t-if='e.user_id'>
+                                                    <span t-field="e.user_id"/>
+                                                </t>
+                                                <t t-if="not e.user_id">-</t>
+                                            </td>
+                                            <td>
+                                                <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%m/%d/%Y %I:%M %p')"/>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <t t-if="e.tasks">
+                                    <div>
+                                        <tr>
+                                            <th>
+                                                <h2>
+                                                    <b>Activity Costs:</b>
+                                                </h2>
+                                            </th>
+                                        </tr>
+                                    </div>
+                                    <table class="table table-condensed">
+                                        <thead>
+                                            <tr style="border-bottom:1px black;border-style: solid;">
+                                                <th>Name</th>
+                                                <th style="text-align:right">Subtotal</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <t t-foreach="e.tasks" t-as="t">
+                                                <tr>
+                                                    <td>
+                                                        <t t-if='t.name'>
+                                                            <span t-field="t.name"/>
+                                                        </t>
+                                                        <t t-if="not t.name">
+                                                            Untitled Task
+                                                        </t>
+                                                    </td>
+                                                    <td style="text-align:right">
+                                                        <t t-if="t.amount_total">
+                                                            <span t-field="t.amount_total"/>
+                                                        </t>
+                                                        <t t-if="not t.amount_total">
+                                                            -
+                                                        </t>
+                                                    </td>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                    <br/><br/>
+                                </t>
+                                <div style="float:right; text-align:right">
+                                    <font size="+2">
+                                        <b>Project Total: </b>
+                                        <t t-if="e.project_cost">
+                                            <span t-field="e.project_cost"/>
+                                        </t>
+                                        <t t-if="not e.project_cost">
+                                            -
+                                        </t>
+                                    </font>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

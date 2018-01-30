@@ -12,6 +12,7 @@
 
 		'report/project_resources_report.xml',
 		'report/report_project_resources.xml',
+		'report/report_project_resources_summary.xml',
 	],
 	'auto_install' : False,
 	'application': False,

@@ -2,12 +2,21 @@
 <odoo>
 	<data>
 		<report
-			string="Project Resources"
+			string="Activity Costs (Detailed)"
 			id="action_report_project_resources"
 			model="project.project"
 			report_type="qweb-pdf"
 			name="project_resources.report_project_resources"
 			file="project_resources.report_project_resources"
+		/>
+
+		<report
+			string="Activity Costs (Summary)"
+			id="action_report_project_resources_summary"
+			model="project.project"
+			report_type="qweb-pdf"
+			name="project_resources.report_project_resources_summary"
+			file="project_resources.report_project_resources_summary"
 		/>
 	</data>
 </odoo>			

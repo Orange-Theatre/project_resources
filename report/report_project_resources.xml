@@ -54,7 +54,7 @@
                                         <tr>
                                             <th>
                                                 <h2>
-                                                    <b>Project Resources:</b>
+                                                    <b>Detailed Activity Costs:</b>
                                                 </h2>
                                             </th>
                                         </tr>
@@ -130,14 +130,7 @@
                                             </table>
                                             <div style="float:right; text-align:right">
                                                 <font size="+1">
-                                                    <b>
-                                                        <t t-if='t.name'>
-                                                            <span t-field="t.name"/>
-                                                        </t>
-                                                        <t t-if="not t.name">
-                                                            Untitled Task
-                                                        </t> Total: 
-                                                    </b>
+                                                    <b>Total: </b>
                                                     <t t-if="t.amount_total">
                                                         <span t-field="t.amount_total"/>
                                                     </t>
