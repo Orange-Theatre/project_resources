@@ -25,6 +25,7 @@
                                         <tr style="border-bottom:1px black;border-style: solid;">
                                             <th>Customer</th>
                                             <th>Project Manager</th>
+                                            <th>Date</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -42,6 +43,9 @@
                                                 </t>
                                                 <t t-if="not e.user_id">-</t>
                                             </td>
+                                            <td>
+                                                <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%m/%d/%Y %I:%M %p')"/>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -56,12 +60,16 @@
                                         </tr>
                                     </div>
                                     <t t-foreach="e.tasks" t-as="t">
-                                        <t t-if='t.name'>
-                                            <span t-field="t.name"/>
-                                        </t>
-                                        <t t-if="not t.name">
-                                            -
-                                        </t>
+                                        <h4>
+                                            <b>
+                                                <t t-if='t.name'>
+                                                    <span t-field="t.name"/>
+                                                </t>
+                                                <t t-if="not t.name">
+                                                    Untitled Task
+                                                </t>
+                                            </b>
+                                        </h4>
                                         <t t-if="t.resource_line_ids">
                                             <table class="table table-condensed">
                                                 <thead>
@@ -120,9 +128,39 @@
                                                     </t>
                                                 </tbody>
                                             </table>
+                                            <div style="float:right; text-align:right">
+                                                <font size="+1">
+                                                    <b>
+                                                        <t t-if='t.name'>
+                                                            <span t-field="t.name"/>
+                                                        </t>
+                                                        <t t-if="not t.name">
+                                                            Untitled Task
+                                                        </t> Total: 
+                                                    </b>
+                                                    <t t-if="t.amount_total">
+                                                        <span t-field="t.amount_total"/>
+                                                    </t>
+                                                    <t t-if="not t.amount_total">
+                                                        -
+                                                    </t>
+                                                </font>
+                                            </div>
+                                            <br/><br/>
                                         </t>
                                     </t>
                                 </t>
+                                <div style="float:right; text-align:right">
+                                    <font size="+2">
+                                        <b>Project Total: </b>
+                                        <t t-if="e.project_cost">
+                                            <span t-field="e.project_cost"/>
+                                        </t>
+                                        <t t-if="not e.project_cost">
+                                            -
+                                        </t>
+                                    </font>
+                                </div>
                             </div>
                         </form>
                     </div>

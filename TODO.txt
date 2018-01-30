@@ -3,6 +3,8 @@ TODO
 -Budget total on resource report
 -Task total on resource report
 -Make it easier to print the resource report. Right now you can only get into project settings in edit mode, which makes the print button not visible.
+-Clean up resource report
+-Add printed date to resource report
 -Setup ACLs for Resource view on projects.
 -Setup ACLs for capabilities
 -Report on actual consumption of resources
