@@ -22,6 +22,22 @@ class Task (models.Model):
 			task.amount_total = total
 
 
+class Project (models.Model):
+	_inherit = 'project.project'
+
+	project_cost = fields.Monetary(string="Project Budget", compute="_get_amount_total", store=True, readonly=True)
+	currency_id = fields.Many2one('res.currency', 'Currency', required=True,\
+		default=lambda self: self.env.user.company_id.currency_id.id)
+
+	@api.depends('task_ids.amount_total')
+	def _get_amount_total(self):
+		for project in self:
+			total = 0.0
+			for task in project.task_ids:
+				total += task.amount_total
+			project.project_cost = total
+			
+
 class Resource(models.Model):
 	_inherit = 'resource.resource'
 
@@ -79,13 +95,6 @@ class ResourceLine(models.Model):
 			if rec.resource_id and rec.resource_type != rec.resource_id.resource_type:
 				rec.resource_id = False
 		return self._domain_resource_id()
-
-	# @api.onchange('resource_type')
-	# def _onchange_resource_type(self):
-	# 	res = {'domain':{'resource_id':[]}}
-	# 	if self.resource_type:
-	# 		res = {'domain':{'resource_id':[('resource_type','=',self.resource_type)]}}
-	# 	return res
 
 	# Makes sure that resource_type always has the same selection values as the resource_type field in resource.resource
 	def _get_resource_type_selection(self):
